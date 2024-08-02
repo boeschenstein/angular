@@ -1,5 +1,16 @@
 # Angular
 
+## Replace global Error handler
+
+<https://youtu.be/XJTc-Sy3JxQ>
+
+```
+(provide:ErrorHandler useClass:MyGlobaler andlerService
+```
+
+- Add Stackify.js to get better log information 
+- send everything to your backend and log it there
+
 ## base href - add url path
 
 ### Url Path
