@@ -4,8 +4,11 @@
 
 <https://youtu.be/XJTc-Sy3JxQ>
 
+- create a new error handler
+- replace existing error handler using this:
+
 ```
-(provide:ErrorHandler useClass:MyGlobaler andlerService
+(provide:ErrorHandler useClass:MyGlobalErrorhandlerService
 ```
 
 - Add Stackify.js to get better log information 
