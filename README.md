@@ -54,3 +54,7 @@ That is the only webserver I found, which can provide href option: <https://www.
 >Note: numbers only in base href (like `/1234`) are not working as it seems
 
 Source: <https://dev.to/isthatcentered/testing-an-angular-build-with-base-href-locally-44af>
+
+# Information
+
+- Node Version Swicher: <https://github.com/jasongin/nvs>
