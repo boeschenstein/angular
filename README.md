@@ -55,6 +55,18 @@ That is the only webserver I found, which can provide href option: <https://www.
 
 Source: <https://dev.to/isthatcentered/testing-an-angular-build-with-base-href-locally-44af>
 
+# Update to standalone components
+
+<https://angular.dev/reference/migrations/standalone>
+
+> if you use nx, use `npx nx g @angular/core:standalone`
+
+Run the migration in the order listed below, verifying that your code builds and runs between each step:
+1. Run `ng g @angular/core:standalone` and select "Convert all components, directives and pipes to standalone"
+2. Run `ng g @angular/core:standalone` and select "Remove unnecessary NgModule classes"
+3. Run `ng g @angular/core:standalone` and select "Bootstrap the project using standalone APIs"
+4. Run any linting and formatting checks, fix any failures, and commit the result
+
 # Information
 
 - Node Version Swicher: <https://github.com/jasongin/nvs>
