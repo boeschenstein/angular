@@ -103,7 +103,7 @@ Remove this @NgModule class definition part in `app.routs.ts` in `main.ts`:
 export class AppRoutingModule {}
 ```
 
-That's it, because the 3 tools calls already added this `provideRouter(appRoutes)` : 
+That's it, because the 3 tools calls already added this `provideRouter(appRoutes)` in  `main.ts`: 
 
 ```ts
 import { appRoutes } from './app/app.routes';
@@ -119,9 +119,48 @@ bootstrapApplication(AppComponent, {
 
 ## Step 4: NgRx
 
+How to config NgRx using Standalone see: <https://ngrx.io/guide/store/reducers>
+
+### Error: The feature name "myFeature" does not exist
+
 > Error: The feature name "myFeature" does not exist in the state, therefore createFeatureSelector cannot access it.  Be sure it is imported in a loaded module using StoreModule.forRoot('myFeature', ...) or StoreModule.forFeature('myFeature', ...).  If the default state is intended to be undefined, as is the case with router state, this development-only warning message can be ignored.
 
-todo
+Solution: properly move NgRx configuration from module to `main.ts`
+
+Configure store: add `provideStore()` to `main.ts`:
+
+```ts
+import { appRoutes } from './app/app.routes';
+
+defineCustomElements();
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideStore()
+  ]
+}).catch(err => console.error(err));
+```
+
+Add NgRx Feature configuration (Reducers, Effects):
+
+```ts
+import { MyEffects } from '../lib/state/my.effects';
+import * as fromReducers from '../lib/state/my.reducer';
+
+export const myRoutes: Route[] = [
+  {
+    path: '',
+    component: MyComponent,
+    providers: [
+      provideState({
+        name: fromReducers.Key,
+        reducer: fromReducers.reducer
+      }),
+      provideEffects([MyEffects])
+    ]
+  }
+];
+```
 
 # Information
 
