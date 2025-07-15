@@ -91,8 +91,6 @@ export class MyService { .. }
 
 ## Step 3: remove (Router) Module
 
-> Error: The feature name "myFeature" does not exist in the state, therefore createFeatureSelector cannot access it.  Be sure it is imported in a loaded module using StoreModule.forRoot('myFeature', ...) or StoreModule.forFeature('myFeature', ...).  If the default state is intended to be undefined, as is the case with router state, this development-only warning message can be ignored.
-
 Details see: <https://dev.to/ngrx/using-ngrx-packages-with-standalone-angular-features-53d8>
 
 Remove this @NgModule class definition part in `app.routs.ts` in `main.ts`:
@@ -119,7 +117,11 @@ bootstrapApplication(AppComponent, {
 }).catch(err => console.error(err));
 ```
 
-> Don't know exactly why the problem was solved...
+## Step 4: NgRx
+
+> Error: The feature name "myFeature" does not exist in the state, therefore createFeatureSelector cannot access it.  Be sure it is imported in a loaded module using StoreModule.forRoot('myFeature', ...) or StoreModule.forFeature('myFeature', ...).  If the default state is intended to be undefined, as is the case with router state, this development-only warning message can be ignored.
+
+todo
 
 # Information
 
