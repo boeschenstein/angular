@@ -95,7 +95,7 @@ export class MyService { .. }
 
 Details see: <https://dev.to/ngrx/using-ngrx-packages-with-standalone-angular-features-53d8>
 
-Remove this @NgModule class definition part in `app.routs.ts`:
+Remove this @NgModule class definition part in `app.routs.ts` in `main.ts`:
 
 ```ts
 @NgModule({
@@ -118,6 +118,8 @@ bootstrapApplication(AppComponent, {
   ]
 }).catch(err => console.error(err));
 ```
+
+> Don't know exactly why the problem was solved...
 
 # Information
 
