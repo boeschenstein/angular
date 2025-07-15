@@ -57,6 +57,8 @@ Source: <https://dev.to/isthatcentered/testing-an-angular-build-with-base-href-l
 
 # Update to standalone components
 
+## Step 1: use a tool
+
 <https://angular.dev/reference/migrations/standalone>
 
 > if you use nx, use `npx nx g @angular/core:standalone`
@@ -66,6 +68,56 @@ Run the migration in the order listed below, verifying that your code builds and
 2. Run `ng g @angular/core:standalone` and select "Remove unnecessary NgModule classes"
 3. Run `ng g @angular/core:standalone` and select "Bootstrap the project using standalone APIs"
 4. Run any linting and formatting checks, fix any failures, and commit the result
+
+## Step 2: inject services
+
+Details see: <https://angular.dev/errors/NG0201>
+
+> if you get this error: `NullInjectorError: No provider for ...`
+
+old:
+
+```ts
+@Injectable()
+export class MyService { .. }
+```
+
+new: add `{ providedIn: 'root' }`
+
+```ts
+@Injectable({ providedIn: 'root' })
+export class MyService { .. }
+```
+
+## Step 3: remove (Router) Module
+
+> Error: The feature name "myFeature" does not exist in the state, therefore createFeatureSelector cannot access it.  Be sure it is imported in a loaded module using StoreModule.forRoot('myFeature', ...) or StoreModule.forFeature('myFeature', ...).  If the default state is intended to be undefined, as is the case with router state, this development-only warning message can be ignored.
+
+Details see: <https://dev.to/ngrx/using-ngrx-packages-with-standalone-angular-features-53d8>
+
+Remove this @NgModule class definition part in `app.routs.ts`:
+
+```ts
+@NgModule({
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
+```
+
+That's it, because the 3 tools calls already added this `provideRouter(appRoutes)` : 
+
+```ts
+import { appRoutes } from './app/app.routes';
+
+defineCustomElements();
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(appRoutes, withEnabledBlockingInitialNavigation())
+  ]
+}).catch(err => console.error(err));
+```
 
 # Information
 
