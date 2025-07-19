@@ -117,6 +117,26 @@ bootstrapApplication(AppComponent, {
 }).catch(err => console.error(err));
 ```
 
+Detail routes: remove module ...
+
+```ts
+export const appRoutes: Route[] = [
+  {
+    path: 'my-detail-path',
+    loadChildren: () => import('@app/admin-app/detail-management').then(m => m.MyDetailModule)
+  },
+```
+
+... and use `Route[]` array directly:
+
+```ts
+export const appRoutes: Route[] = [
+  {
+    path: 'my-detail-path',
+    loadChildren: () => import('@app/admin-app/detail-management').then(m => m.myDetailRoutes)
+  },
+```
+
 ## Step 4: NgRx
 
 How to config NgRx using Standalone see: <https://ngrx.io/guide/store/reducers>
@@ -147,7 +167,7 @@ Add NgRx Feature configuration (Reducers, Effects):
 import { MyEffects } from '../lib/state/my.effects';
 import * as fromReducers from '../lib/state/my.reducer';
 
-export const myRoutes: Route[] = [
+export const myDetailRoutes: Route[] = [
   {
     path: '',
     component: MyComponent,
