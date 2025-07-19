@@ -4,6 +4,10 @@
 
 <https://github.com/boeschenstein/angular-standalone/edit/main/README.md>
 
+## NgRx
+
+<https://github.com/boeschenstein/ngrx/edit/main/README.md>
+
 ## Replace global Error handler
 
 <https://youtu.be/XJTc-Sy3JxQ>
@@ -61,4 +65,4 @@ Source: <https://dev.to/isthatcentered/testing-an-angular-build-with-base-href-l
 
 # Information
 
-- Node Version Swicher: <https://github.com/jasongin/nvs>
+- Node Version Switcher: <https://github.com/jasongin/nvs>
